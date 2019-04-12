@@ -15,7 +15,6 @@ const port       = process.env.PORT || 3000;
 const path       = require("path");
 const AuthToken  = require('./middleware/AuthToken');
 
-
 fs.readdirSync(path.join(__dirname, "./models")).forEach(function(file) {
     if (~file.indexOf('.js')) require("./models/" + file);
 });
@@ -23,9 +22,8 @@ fs.readdirSync(path.join(__dirname, "./models")).forEach(function(file) {
 mongoose.connect(process.env.MONGO_HOST, {useCreateIndex:true, useNewUrlParser:true});
 
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.json({ type: 'application/json' }));
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Methods", "*")

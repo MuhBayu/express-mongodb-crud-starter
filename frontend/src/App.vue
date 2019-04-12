@@ -22,7 +22,7 @@
 
 				<div class="navbar-end">
 					<div class="navbar-item has-dropdown is-hoverable" v-if="this.status == 'isLogin'">
-						<a class="navbar-link" v-if="user != null" v-text="user.username"></a>
+						<a class="navbar-link" v-if="user" v-text="user.username"></a>
 						<div class="navbar-dropdown">
 							<router-link tag="a" class="navbar-item" :to="{ name: 'Profile' }">Profile</router-link>
 							<hr class="navbar-divider">

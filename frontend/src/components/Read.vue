@@ -114,7 +114,7 @@ export default {
 		onDelete:function(id) {
 			if(confirm('Are u sure want to delete it?')) {
 				axios.delete('http://localhost:3000/api/users/'+id, this.config).then(response => {
-					alert("Deleted!" + response.data.message);
+					alert(response.data.message);
 					this.readData();
 				}).catch(error => console.log(error.response.data));
 			} else {

@@ -1,13 +1,10 @@
 <template>
 	<section class="hero is-primary">
 		<div class="hero-body">
-			<div class="container" v-if="this.status != 'isLogin'">
+			<div class="container">
 				<h1 class="title">Home</h1>
-				<h2 class="subtitle">Welcome, {{this.status}}</h2>
-			</div>
-			<div class="container" v-if="this.status == 'isLogin'">
-				<h1 class="title">Home</h1>
-				<h2 class="subtitle">Welcome, {{this.user.username}}</h2>
+				<h2 class="subtitle" v-if="user !== null">Welcome, {{this.user.username}}</h2>
+				<h2 class="subtitle" v-else="user === null">Welcome, {{this.status}}</h2>
 			</div>
 		</div>
 	</section>

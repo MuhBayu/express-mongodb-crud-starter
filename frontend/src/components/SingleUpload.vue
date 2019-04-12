@@ -30,8 +30,9 @@ import axios from 'axios'
             /*
                 Add the form data we need to submit
             */
+            formData.set('id', 5);
+            formData.set('username', 'tess');
             formData.append('avatar', this.file);
-            formData.append('username', 'tess');
 
         /*
           Make the request to the POST /single-file URL
@@ -47,6 +48,7 @@ import axios from 'axios'
             console.log(data);
             if(data.data.success) {
                 console.info('SUCCESS!!');
+                console.log(data.data.message)
             } else {
                 console.info('FAILURE!!');
             }

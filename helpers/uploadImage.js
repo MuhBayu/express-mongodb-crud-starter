@@ -1,20 +1,23 @@
 const multer        = require('multer')
-var storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        let path = './public/uploads/';
-        callback(null, path)
-    },
-    filename: function (req, file, callback) {
-        var fileObj = {
-            "image/png": ".png",
-            "image/jpeg": ".jpeg",
-            "image/jpg": ".jpg"
+
+var ImageStorage = multer.diskStorage({
+	destination: './public/uploads/avatar/',
+	filename: function (req, file, cb, fname) {
+		var fileObj = {
+			"image/png": ".png",
+			"image/jpeg": ".jpeg",
+			"image/jpg": ".jpg"
         };
-        if (fileObj[file.mimetype] == undefined) {
-            callback(new Error("file format not valid"));
-        } else {
-            callback(null, Date.now() + fileObj[file.mimetype])
-        }
-    }
+        filename = Date.now() + fileObj[file.mimetype]
+        destination = 'tess'
+		if (fileObj[file.mimetype] === undefined) {
+			cb(new Error('filetype'))
+		} else {
+            // input = await req.body
+			cb(null, filename)
+		}
+	}
 })
-module.exports = multer({ storage: storage })
+module.exports = multer({
+    storage: ImageStorage,
+})

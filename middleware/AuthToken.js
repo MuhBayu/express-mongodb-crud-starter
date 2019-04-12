@@ -7,9 +7,9 @@ module.exports = (req, res, next) => {
         token = token.slice(7, token.length);
         jwt.verify(token, config.secret_key, function(err, decoded) {
             if(!err) {
+                req.user_id = decoded._id
                 next();
             } else {
-                console.log(err)
                 return res.json({success:false, error_name:err.name, message:'Error access token'})
             }
         });
